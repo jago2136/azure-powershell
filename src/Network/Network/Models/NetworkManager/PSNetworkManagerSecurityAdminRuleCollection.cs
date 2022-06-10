@@ -19,7 +19,7 @@ namespace Microsoft.Azure.Commands.Network.Models.NetworkManager
     using Newtonsoft.Json;
     using System.Collections.Generic;
 
-    public class PSNetworkManagerSecurityRuleCollection : PSNetworkManagerBaseResource
+    public class PSNetworkManagerSecurityAdminRuleCollection : PSNetworkManagerBaseResource
     {
         [JsonProperty(Order = 1)]
         public IList<PSNetworkManagerSecurityGroupItem> AppliesToGroups { get; set; }

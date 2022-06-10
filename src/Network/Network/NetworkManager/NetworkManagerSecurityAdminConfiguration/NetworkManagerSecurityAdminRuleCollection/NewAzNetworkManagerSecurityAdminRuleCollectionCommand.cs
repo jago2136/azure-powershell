@@ -26,7 +26,7 @@ using MNM = Microsoft.Azure.Management.Network.Models;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    [Cmdlet("New", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminRuleCollection", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityRuleCollection))]
+    [Cmdlet("New", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminRuleCollection", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityAdminRuleCollection))]
     public class NewAzNetworkManagerSecurityAdminRuleCollectionCommand : NetworkManagerSecurityAdminRuleCollectionBaseCmdlet
     {
         [Alias("ResourceName")]
@@ -108,9 +108,9 @@ namespace Microsoft.Azure.Commands.Network
                 () => present);
         }
 
-        private PSNetworkManagerSecurityRuleCollection CreateNetworkManagerSecurityAdminRuleCollection()
+        private PSNetworkManagerSecurityAdminRuleCollection CreateNetworkManagerSecurityAdminRuleCollection()
         {
-            var ruleCollection = new PSNetworkManagerSecurityRuleCollection();
+            var ruleCollection = new PSNetworkManagerSecurityAdminRuleCollection();
             ruleCollection.Name = this.Name;
             if (!string.IsNullOrEmpty(this.Description))
             {
@@ -123,7 +123,7 @@ namespace Microsoft.Azure.Commands.Network
             ruleCollection.AppliesToGroups = this.AppliesToGroup;
 
             // Map to the sdk object
-            var ruleCollectionModel = NetworkResourceManagerProfile.Mapper.Map<MNM.RuleCollection>(ruleCollection);
+            var ruleCollectionModel = NetworkResourceManagerProfile.Mapper.Map<MNM.AdminRuleCollection>(ruleCollection);
 
             this.NullifyNetworkManagerSecurityAdminRuleCollectionIfAbsent(ruleCollectionModel);
             

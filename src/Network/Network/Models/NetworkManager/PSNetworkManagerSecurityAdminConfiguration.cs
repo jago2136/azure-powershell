@@ -21,7 +21,7 @@ namespace Microsoft.Azure.Commands.Network.Models.NetworkManager
     using Newtonsoft.Json;
     using WindowsAzure.Commands.Common.Attributes;
 
-    public class PSNetworkManagerSecurityConfiguration : PSNetworkManagerBaseResource
+    public class PSNetworkManagerSecurityAdminConfiguration : PSNetworkManagerBaseResource
     {
         public string SecurityType { get; set; }
 

@@ -90,5 +90,13 @@ namespace Commands.Network.Test.ScenarioTests
         {
             TestRunner.RunTestScript("Test-NetworkManagerSubscriptionConnectionCRUD");
         }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        [Trait(Category.Owner, NrpTeamAlias.sdnnrp)]
+        public void NetworkManagerManagementGroupConnectionCRUD()
+        {
+            TestRunner.RunTestScript("Test-NetworkManagerManagementGroupConnectionCRUD");
+        }
     }
 }

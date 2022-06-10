@@ -21,21 +21,21 @@ using Microsoft.Azure.Commands.Network.Models.NetworkManager;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    public abstract class NetworkManagerSecurityAdminConfigurationBaseCmdlet : NetworkBaseCmdlet
+    public abstract class NetworkManagerManagementGroupConnectionBaseCmdlet : NetworkBaseCmdlet
     {
-        public ISecurityAdminConfigurationsOperations NetworkManagerSecurityAdminConfigurationClient
+        public IManagementGroupNetworkManagerConnectionsOperations NetworkManagerManagementGroupConnectionClient
         {
             get
             {
-                return NetworkClient.NetworkManagementClient.SecurityAdminConfigurations;
+                return NetworkClient.NetworkManagementClient.ManagementGroupNetworkManagerConnections;
             }
         }
 
-        public bool IsNetworkManagerSecurityAdminConfigurationPresent(string resourceGroupName, string networkManagerName, string name)
+        public bool IsNetworkManagerManagementGroupConnectionPresent(string managementGroupId, string name)
         {
             try
             {
-                GetNetworkManagerSecurityAdminConfiguration(resourceGroupName, networkManagerName, name);
+                GetNetworkManagerManagementGroupConnection(managementGroupId, name);
             }
             catch (Microsoft.Rest.Azure.CloudException exception)
             {
@@ -52,28 +52,28 @@ namespace Microsoft.Azure.Commands.Network
         }
 
 
-        public PSNetworkManagerSecurityAdminConfiguration GetNetworkManagerSecurityAdminConfiguration(string resourceGroupName, string networkManagerName, string name)
+        public PSNetworkManagerConnection GetNetworkManagerManagementGroupConnection(string managementGroupId, string name)
         {
-            var nmsc = this.NetworkManagerSecurityAdminConfigurationClient.Get(resourceGroupName, networkManagerName, name);
+            var networkManagerManagementGroupConnection = this.NetworkManagerManagementGroupConnectionClient.Get(managementGroupId, name);
 
-            var psNetworkManagerSecurityConfiguration = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerSecurityAdminConfiguration>(nmsc);
-            return psNetworkManagerSecurityConfiguration;
+            var psNetworkManagerManagementGroupConnection = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerConnection>(networkManagerManagementGroupConnection);
+            return psNetworkManagerManagementGroupConnection;
         }
 
         // Temporary - to be removed
-        public void NullifyNetworkManagerSecurityAdminConfigurationIfAbsent(SecurityAdminConfiguration nmsc)
+        public void NullifyNetworkManagerManagementGroupConnectionIfAbsent(NetworkManagerConnection networkManagerManagementGroupConnection)
         {
-            if (nmsc == null)
+            if (networkManagerManagementGroupConnection == null)
             {
                 return;
             }
         }
 
-        public PSNetworkManagerSecurityAdminConfiguration ToPsNetworkManagerSecurityAdminConfiguration(SecurityAdminConfiguration nmsc)
+        public PSNetworkManagerConnection ToPsNetworkManagerManagementGroupConnection(NetworkManagerConnection networkManagerManagementGroupConnection)
         {
-            var psNmsc = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerSecurityAdminConfiguration>(nmsc);
+            var psNetworkManagerManagementGroupConnection = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerConnection>(networkManagerManagementGroupConnection);
 
-            return psNmsc;
+            return psNetworkManagerManagementGroupConnection;
         }
     }
 }

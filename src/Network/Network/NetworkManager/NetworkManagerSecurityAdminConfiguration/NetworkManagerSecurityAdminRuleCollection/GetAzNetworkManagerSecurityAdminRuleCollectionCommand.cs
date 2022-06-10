@@ -22,7 +22,7 @@ using Microsoft.Azure.Commands.Network.Models.NetworkManager;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    [Cmdlet("Get", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminRuleCollection", DefaultParameterSetName = "NoExpand"), OutputType(typeof(PSNetworkManagerSecurityRuleCollection))]
+    [Cmdlet("Get", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminRuleCollection", DefaultParameterSetName = "NoExpand"), OutputType(typeof(PSNetworkManagerSecurityAdminRuleCollection))]
     public class GetAzNetworkManagerSecurityAdminRuleCollectionCommand : NetworkManagerSecurityAdminRuleCollectionBaseCmdlet
     {
         [Alias("ResourceName")]
@@ -78,12 +78,12 @@ namespace Microsoft.Azure.Commands.Network
             }
             else
             {
-                IPage<RuleCollection> ruleCollectionPage;
+                IPage<AdminRuleCollection> ruleCollectionPage;
                 ruleCollectionPage = this.NetworkManagerSecurityAdminRuleCollectionClient.List(this.ResourceGroupName, this.NetworkManagerName, this.SecurityAdminConfigurationName);
 
                 // Get all resources by polling on next page link
-                var ruleCollectionList = ListNextLink<RuleCollection>.GetAllResourcesByPollingNextLink(ruleCollectionPage, this.NetworkManagerSecurityAdminRuleCollectionClient.ListNext);
-                var psRuleCollectionList = new List<PSNetworkManagerSecurityRuleCollection>();
+                var ruleCollectionList = ListNextLink<AdminRuleCollection>.GetAllResourcesByPollingNextLink(ruleCollectionPage, this.NetworkManagerSecurityAdminRuleCollectionClient.ListNext);
+                var psRuleCollectionList = new List<PSNetworkManagerSecurityAdminRuleCollection>();
 
                 foreach (var ruleCollectionModel in ruleCollectionList)
                 {

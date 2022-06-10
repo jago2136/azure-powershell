@@ -24,7 +24,7 @@ using MNM = Microsoft.Azure.Management.Network.Models;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    [Cmdlet("Set", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminConfiguration", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityConfiguration))]
+    [Cmdlet("Set", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminConfiguration", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityAdminConfiguration))]
     public class SetAzNetworkManagerSecurityAdminConfiguration : NetworkManagerSecurityAdminConfigurationBaseCmdlet
     {
         [Parameter(
@@ -49,7 +49,7 @@ namespace Microsoft.Azure.Commands.Network
             Mandatory = true,
             ValueFromPipeline = true,
             HelpMessage = "The NetworkManagerSecurityAdminConfiguration")]
-        public PSNetworkManagerSecurityConfiguration NetworkManagerSecurityAdminConfiguration { get; set; }
+        public PSNetworkManagerSecurityAdminConfiguration NetworkManagerSecurityAdminConfiguration { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = "Run cmdlet in the background")]
         public SwitchParameter AsJob { get; set; }
@@ -66,7 +66,7 @@ namespace Microsoft.Azure.Commands.Network
                 }
 
                 // Map to the sdk object
-                var securityConfigModel = NetworkResourceManagerProfile.Mapper.Map<MNM.SecurityConfiguration>(this.NetworkManagerSecurityAdminConfiguration);
+                var securityConfigModel = NetworkResourceManagerProfile.Mapper.Map<MNM.SecurityAdminConfiguration>(this.NetworkManagerSecurityAdminConfiguration);
 
                 // Execute the PUT NetworkManagerSecurityAdminConfiguration call
                 var securityConfigResponse = this.NetworkManagerSecurityAdminConfigurationClient.CreateOrUpdate(securityConfigModel, this.ResourceGroupName, this.NetworkManagerName, this.NetworkManagerSecurityAdminConfiguration.Name);

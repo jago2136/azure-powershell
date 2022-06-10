@@ -26,7 +26,7 @@ using MNM = Microsoft.Azure.Management.Network.Models;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    [Cmdlet("New", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminConfiguration", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityConfiguration))]
+    [Cmdlet("New", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminConfiguration", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityAdminConfiguration))]
     public class NewAzNetworkManagerSecurityAdminConfigurationCommand : NetworkManagerSecurityAdminConfigurationBaseCmdlet
     {
         [Alias("ResourceName")]
@@ -105,9 +105,9 @@ namespace Microsoft.Azure.Commands.Network
                 () => present);
         }
 
-        private PSNetworkManagerSecurityConfiguration CreateNetworkManagerSecurityAdminConfiguration()
+        private PSNetworkManagerSecurityAdminConfiguration CreateNetworkManagerSecurityAdminConfiguration()
         {
-            var securityConfig = new PSNetworkManagerSecurityConfiguration();
+            var securityConfig = new PSNetworkManagerSecurityAdminConfiguration();
             securityConfig.Name = this.Name;
             securityConfig.ApplyOnNetworkIntentPolicyBasedServices = this.ApplyOnNetworkIntentPolicyBasedService;
             if (!string.IsNullOrEmpty(this.Description))
@@ -128,7 +128,7 @@ namespace Microsoft.Azure.Commands.Network
             }
 
             // Map to the sdk object
-            var securityConfigModel = NetworkResourceManagerProfile.Mapper.Map<MNM.SecurityConfiguration>(securityConfig);
+            var securityConfigModel = NetworkResourceManagerProfile.Mapper.Map<MNM.SecurityAdminConfiguration>(securityConfig);
 
             this.NullifyNetworkManagerSecurityAdminConfigurationIfAbsent(securityConfigModel);
             

@@ -24,7 +24,7 @@ using MNM = Microsoft.Azure.Management.Network.Models;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    [Cmdlet("Set", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminRuleCollection", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityRuleCollection))]
+    [Cmdlet("Set", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminRuleCollection", SupportsShouldProcess = true), OutputType(typeof(PSNetworkManagerSecurityAdminRuleCollection))]
     public class SetAzNetworkManagerSecurityAdminRuleCollection : NetworkManagerSecurityAdminRuleCollectionBaseCmdlet
     {
         [Alias("ConfigName")]
@@ -59,7 +59,7 @@ namespace Microsoft.Azure.Commands.Network
             Mandatory = true,
             ValueFromPipeline = true,
             HelpMessage = "The NetworkManagerSecurityAdminRuleCollection")]
-        public PSNetworkManagerSecurityRuleCollection NetworkManagerSecurityAdminRuleCollection { get; set; }
+        public PSNetworkManagerSecurityAdminRuleCollection NetworkManagerSecurityAdminRuleCollection { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = "Run cmdlet in the background")]
         public SwitchParameter AsJob { get; set; }
@@ -76,7 +76,7 @@ namespace Microsoft.Azure.Commands.Network
                 }
 
                 // Map to the sdk object
-                var securityRuleCollectionModel = NetworkResourceManagerProfile.Mapper.Map<MNM.RuleCollection>(this.NetworkManagerSecurityAdminRuleCollection);
+                var securityRuleCollectionModel = NetworkResourceManagerProfile.Mapper.Map<MNM.AdminRuleCollection>(this.NetworkManagerSecurityAdminRuleCollection);
 
                 // Execute the PUT NetworkManagerSecurityAdminRuleCollection call
                 var securityRuleCollectionResponse = this.NetworkManagerSecurityAdminRuleCollectionClient.CreateOrUpdate(securityRuleCollectionModel, this.ResourceGroupName, this.NetworkManagerName, this.SecurityAdminConfigurationName, this.NetworkManagerSecurityAdminRuleCollection.Name);

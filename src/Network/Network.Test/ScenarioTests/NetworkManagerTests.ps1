@@ -643,3 +643,34 @@ function Test-NetworkManagerSubscriptionConnectionCRUD
     finally{
 	}
 }
+
+<#
+.SYNOPSIS
+Tests creating/getting/deleting network manager connection on a management group
+#>
+function Test-NetworkManagerManagementGroupConnectionCRUD
+{
+    # Setup
+    $networkManagerConnectionName = Get-ResourceName
+    $networkManagerId = "/subscriptions/08615b4b-bc9c-4a70-be1b-2ea10bc97b52/resourceGroups/PSTestResources/providers/Microsoft.Network/networkManagers/PSTestNM"
+    $managementGroupId = "SDKTestMG"
+
+    try{
+        New-AzNetworkManagerManagementGroupConnection -ManagementGroupId $managementGroupId -Name $networkManagerConnectionName -NetworkManagerId $networkManagerId -Description "SampleDescription" 
+        $networkManagerConnection = Get-AzNetworkManagerManagementGroupConnection -ManagementGroupId $managementGroupId -Name $networkManagerConnectionName
+        Assert-NotNull $networkManagerConnection;
+        Assert-AreEqual $networkManagerConnectionName $networkManagerConnection.Name;
+
+        $networkManagerConnection.Description = "A Different Description."
+        $newNetworkManagerConnection = Set-AzNetworkManagerManagementGroupConnection -ManagementGroupId $managementGroupId -NetworkManagerManagementGroupConnection $networkManagerConnection
+        Assert-NotNull $newNetworkManagerConnection;
+        Assert-AreEqual "A Different Description." $newNetworkManagerConnection.Description;
+        Assert-AreEqual $networkManagerConnectionName $newNetworkManagerConnection.Name;
+
+        $job = Remove-AzNetworkManagerManagementGroupConnection -ManagementGroupId $managementGroupId -Name $networkManagerConnectionName -PassThru -Force -AsJob;
+        $job | Wait-Job;
+        $removeResult = $job | Receive-Job;
+	}
+    finally{
+	}
+}

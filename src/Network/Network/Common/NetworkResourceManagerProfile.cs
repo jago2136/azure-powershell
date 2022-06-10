@@ -1514,10 +1514,10 @@ namespace Microsoft.Azure.Commands.Network
                 cfg.CreateMap<ANM.PSNetworkManagerScopes, MNM.NetworkManagerPropertiesNetworkManagerScopes>();
                 cfg.CreateMap<ANM.PSNetworkManagerSecurityAdminRule, MNM.AdminRule>();
                 cfg.CreateMap<ANM.PSNetworkManagerSecurityBaseAdminRule, MNM.BaseAdminRule>();
-                cfg.CreateMap<ANM.PSNetworkManagerSecurityConfiguration, MNM.SecurityConfiguration>();
+                cfg.CreateMap<ANM.PSNetworkManagerSecurityAdminConfiguration, MNM.SecurityAdminConfiguration>();
                 cfg.CreateMap<ANM.PSNetworkManagerSecurityDefaultAdminRule, MNM.DefaultAdminRule>();
                 cfg.CreateMap<ANM.PSNetworkManagerSecurityGroupItem, MNM.NetworkManagerSecurityGroupItem>();
-                cfg.CreateMap<ANM.PSNetworkManagerSecurityRuleCollection, MNM.RuleCollection>();
+                cfg.CreateMap<ANM.PSNetworkManagerSecurityAdminRuleCollection, MNM.AdminRuleCollection>();
                 cfg.CreateMap<ANM.PSNetworkManagerScopeConnection, MNM.ScopeConnection>();
                 cfg.CreateMap<ANM.PSNetworkManagerConnection, MNM.NetworkManagerConnection>();
 
@@ -1555,10 +1555,10 @@ namespace Microsoft.Azure.Commands.Network
                 cfg.CreateMap<MNM.NetworkManagerPropertiesNetworkManagerScopes, ANM.PSNetworkManagerScopes>();
                 cfg.CreateMap<MNM.AdminRule, ANM.PSNetworkManagerSecurityAdminRule>();
                 cfg.CreateMap<MNM.BaseAdminRule, ANM.PSNetworkManagerSecurityBaseAdminRule>();
-                cfg.CreateMap<MNM.SecurityConfiguration, ANM.PSNetworkManagerSecurityConfiguration>();
+                cfg.CreateMap<MNM.SecurityAdminConfiguration, ANM.PSNetworkManagerSecurityAdminConfiguration>();
                 cfg.CreateMap<MNM.DefaultAdminRule, ANM.PSNetworkManagerSecurityDefaultAdminRule>();
                 cfg.CreateMap<MNM.NetworkManagerSecurityGroupItem, ANM.PSNetworkManagerSecurityGroupItem>();
-                cfg.CreateMap<MNM.RuleCollection, ANM.PSNetworkManagerSecurityRuleCollection>();
+                cfg.CreateMap<MNM.AdminRuleCollection, ANM.PSNetworkManagerSecurityAdminRuleCollection>();
                 cfg.CreateMap<MNM.ScopeConnection, ANM.PSNetworkManagerScopeConnection>();
                 cfg.CreateMap<MNM.NetworkManagerConnection, ANM.PSNetworkManagerConnection>();
             });

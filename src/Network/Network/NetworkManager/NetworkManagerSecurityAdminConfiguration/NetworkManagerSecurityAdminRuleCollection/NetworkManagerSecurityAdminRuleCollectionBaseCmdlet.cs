@@ -52,16 +52,16 @@ namespace Microsoft.Azure.Commands.Network
         }
 
 
-        public PSNetworkManagerSecurityRuleCollection GetNetworkManagerSecurityAdminRuleCollection(string resourceGroupName, string networkManagerName, string securityConfigName, string name)
+        public PSNetworkManagerSecurityAdminRuleCollection GetNetworkManagerSecurityAdminRuleCollection(string resourceGroupName, string networkManagerName, string securityConfigName, string name)
         {
             var ruleCollection = this.NetworkManagerSecurityAdminRuleCollectionClient.Get(resourceGroupName, networkManagerName, securityConfigName, name);
 
-            var psRuleCollection = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerSecurityRuleCollection>(ruleCollection);
+            var psRuleCollection = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerSecurityAdminRuleCollection>(ruleCollection);
             return psRuleCollection;
         }
 
         // Temporary - to be removed
-        public void NullifyNetworkManagerSecurityAdminRuleCollectionIfAbsent(RuleCollection ruleCollection)
+        public void NullifyNetworkManagerSecurityAdminRuleCollectionIfAbsent(AdminRuleCollection ruleCollection)
         {
             if (ruleCollection == null)
             {
@@ -69,9 +69,9 @@ namespace Microsoft.Azure.Commands.Network
             }
         }
 
-        public PSNetworkManagerSecurityRuleCollection ToPsNetworkManagerSecurityAdminRuleCollection(RuleCollection ruleCollection)
+        public PSNetworkManagerSecurityAdminRuleCollection ToPsNetworkManagerSecurityAdminRuleCollection(AdminRuleCollection ruleCollection)
         {
-            var psRuleCollection = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerSecurityRuleCollection>(ruleCollection);
+            var psRuleCollection = NetworkResourceManagerProfile.Mapper.Map<PSNetworkManagerSecurityAdminRuleCollection>(ruleCollection);
 
             return psRuleCollection;
         }

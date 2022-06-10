@@ -23,7 +23,7 @@ using Microsoft.Azure.Commands.Network.Models.NetworkManager;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    [Cmdlet("Get", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminConfiguration", DefaultParameterSetName = "NoExpand"), OutputType(typeof(PSNetworkManagerSecurityConfiguration))]
+    [Cmdlet("Get", ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "NetworkManagerSecurityAdminConfiguration", DefaultParameterSetName = "NoExpand"), OutputType(typeof(PSNetworkManagerSecurityAdminConfiguration))]
     public class GetAzNetworkManagerSecurityAdminConfigurationCommand : NetworkManagerSecurityAdminConfigurationBaseCmdlet
     {
         [Alias("ResourceName")]
@@ -69,12 +69,12 @@ namespace Microsoft.Azure.Commands.Network
             }
             else
             {
-                IPage<SecurityConfiguration> scPage;
+                IPage<SecurityAdminConfiguration> scPage;
                 scPage = this.NetworkManagerSecurityAdminConfigurationClient.List(this.ResourceGroupName, this.NetworkManagerName);
 
                 // Get all resources by polling on next page link
-                var nscList = ListNextLink<SecurityConfiguration>.GetAllResourcesByPollingNextLink(scPage, this.NetworkManagerSecurityAdminConfigurationClient.ListNext);
-                var psNmscList = new List<PSNetworkManagerSecurityConfiguration>();
+                var nscList = ListNextLink<SecurityAdminConfiguration>.GetAllResourcesByPollingNextLink(scPage, this.NetworkManagerSecurityAdminConfigurationClient.ListNext);
+                var psNmscList = new List<PSNetworkManagerSecurityAdminConfiguration>();
 
                 foreach (var networkManagerSecurityConfiguration in nscList)
                 {

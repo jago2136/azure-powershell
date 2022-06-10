@@ -12,7 +12,7 @@
 # RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '4.15.1'
+ModuleVersion = '4.15.2'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -593,7 +593,11 @@ CmdletsToExport = 'Add-AzApplicationGatewayAuthenticationCertificate',
                'New-AzNetworkManagerScopeConnection', 
                'Get-AzNetworkManagerScopeConnection', 
                'Remove-AzNetworkManagerScopeConnection', 
-               'Set-AzNetworkManagerScopeConnection'
+               'Set-AzNetworkManagerScopeConnection', 
+               'New-AzNetworkManagerManagementGroupConnection', 
+               'Get-AzNetworkManagerManagementGroupConnection', 
+               'Remove-AzNetworkManagerManagementGroupConnection', 
+               'Set-AzNetworkManagerManagementGroupConnection'
 
 # Variables to export from this module
 # VariablesToExport = @()
@@ -692,6 +696,10 @@ PrivateData = @{
     - ''New-AzNetworkManagerSubscriptionConnection'' 
     - ''Remove-AzNetworkManagerSubscriptionConnection'' 
     - ''Set-AzNetworkManagerSubscriptionConnection'' 
+    - ''Get-AzNetworkManagerManagementGroupConnection'' 
+    - ''New-AzNetworkManagerManagementGroupConnection'' 
+    - ''Remove-AzNetworkManagerManagementGroupConnection'' 
+    - ''Set-AzNetworkManagerManagementGroupConnection'' 
 * Added support for retreiving the state of packet capture even when the provisioning state of the packet capture was failure
     - ''Get-AzNetworkWatcherPacketCapture''
 * Added support for accepting Vnet, Subnet and NIC resources as the TargetResourceId for the following cdmlets
